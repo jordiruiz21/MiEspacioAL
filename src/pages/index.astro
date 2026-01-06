@@ -259,3 +259,14 @@ const posts = (await getCollection('blog')).sort(
 		<Footer />
 	</body>
 </html>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
