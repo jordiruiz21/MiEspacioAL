@@ -257,16 +257,23 @@ const posts = (await getCollection('blog')).sort(
 			</section>
 		</main>
 		<Footer />
+		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<script>
+  // Esperamos a que la librería cargue si aún no lo ha hecho
+  const script = document.querySelector('script[src*="netlify-identity-widget.js"]');
+  
+  script.addEventListener('load', () => {
+      if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", user => {
+              if (!user) {
+                  window.netlifyIdentity.on("login", () => {
+                      document.location.href = "/admin/";
+                  });
+              }
+          });
+      }
+  });
+</script>
 	</body>
 </html>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
