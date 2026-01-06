@@ -1,0 +1,261 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			/* --- Variables & Config --- */
+			:root {
+				--card-bg: #ffffff;
+				--card-border: #e2e8f0;
+				--primary-color: #ff6b6b;
+				--primary-light: #fff5f5;
+				--text-main: #2d3748;
+				--text-muted: #718096;
+				--radius: 12px;
+				/* Sombras de papel */
+				--shadow-paper: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+				--shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+			}
+
+			body {
+				background-color: #fdfbf7;
+				/* Fondo estilo libreta de puntos */
+				background-image: radial-gradient(#cbd5e0 2px, transparent 2px);
+				background-size: 30px 30px;
+				color: var(--text-main);
+				font-family: 'Varela Round', system-ui, sans-serif;
+			}
+
+			main {
+				width: 1000px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 5em 1em; /* Un poco más de padding arriba para las cintas */
+			}
+
+			@keyframes fadeInUp {
+				from { opacity: 0; transform: translateY(40px) rotate(2deg); }
+				to { opacity: 1; transform: translateY(0) rotate(0); }
+			}
+
+			ul {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 3.5rem; /* Más espacio para que respiren las tarjetas */
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* --- Contenedor de la Tarjeta (LI) --- */
+			ul li {
+				position: relative;
+				/* Quitamos estilos visuales del LI para dárselos al A, así el LI es el contenedor lógico */
+				background: transparent; 
+				perspective: 1000px;
+				animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+			}
+
+			/* Stagger animation */
+			ul li:nth-child(1) { animation-delay: 100ms; }
+			ul li:nth-child(2) { animation-delay: 200ms; }
+			ul li:nth-child(3) { animation-delay: 300ms; }
+			ul li:nth-child(4) { animation-delay: 400ms; }
+			ul li:nth-child(n+5) { animation-delay: 500ms; }
+
+			/* --- WASHI TAPE EFFECT (La Cinta) --- */
+			ul li::after {
+				content: '';
+				position: absolute;
+				top: -15px; /* Que sobresalga por arriba */
+				left: 50%;
+				width: 110px;
+				height: 32px;
+				background-color: rgba(255, 107, 107, 0.85); /* Color base rojizo */
+				
+				/* Patrón de rayas diagonales típico del Washi Tape */
+				background-image: repeating-linear-gradient(
+					45deg,
+					transparent,
+					transparent 10px,
+					rgba(255, 255, 255, 0.2) 10px,
+					rgba(255, 255, 255, 0.2) 20px
+				);
+
+				transform: translateX(-50%) rotate(-2deg);
+				box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+				z-index: 10; /* Por encima de la tarjeta */
+				
+				/* Bordes irregulares simulando rasgado (simple usando clip-path o border-radius) */
+				mask-image: linear-gradient(90deg, transparent 2%, black 5%, black 95%, transparent 98%);
+				backdrop-filter: blur(1px); /* Efecto translúcido */
+			}
+
+			/* --- Variaciones de color y ángulo para la cinta --- */
+			/* Cinta Azul */
+			ul li:nth-child(2n)::after {
+				background-color: rgba(74, 144, 226, 0.85); /* Azul */
+				transform: translateX(-50%) rotate(1.5deg);
+				top: -18px;
+			}
+			/* Cinta Amarilla */
+			ul li:nth-child(3n)::after {
+				background-color: rgba(246, 224, 94, 0.9); /* Amarillo */
+				transform: translateX(-50%) rotate(-1deg);
+				width: 130px; /* Cinta más larga */
+			}
+			/* Cinta Verde */
+			ul li:nth-child(5n)::after {
+				background-color: rgba(104, 211, 145, 0.85); /* Verde */
+				transform: translateX(-50%) rotate(3deg);
+				top: -12px;
+			}
+
+			/* --- La Tarjeta Visual (Enlace) --- */
+			ul li a {
+				text-decoration: none;
+				color: inherit;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				background: var(--card-bg);
+				border-radius: 4px; /* Bordes menos redondeados, más tipo foto */
+				border: 8px solid #fff; /* Marco blanco tipo Polaroid */
+				box-shadow: var(--shadow-paper);
+				overflow: hidden;
+				transition: all 0.4s ease;
+				position: relative;
+				z-index: 1;
+			}
+
+			/* Hover Effect: La tarjeta flota y rota ligeramente */
+			ul li:hover a {
+				transform: translateY(-8px) rotate(1deg);
+				box-shadow: var(--shadow-hover);
+			}
+			
+			/* Variación de rotación en hover para más naturalidad */
+			ul li:nth-child(even):hover a {
+				transform: translateY(-8px) rotate(-1deg);
+			}
+
+			.image-container {
+				width: 100%;
+				height: 220px;
+				overflow: hidden;
+				border-bottom: 2px solid #f0f0f0;
+			}
+
+			ul li img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.7s ease;
+			}
+
+			ul li:hover img {
+				transform: scale(1.15) rotate(1deg); /* Zoom + rotación sutil */
+			}
+
+			.content {
+				padding: 1.5rem;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: space-between;
+				background-image: linear-gradient(#e2e8f0 1px, transparent 1px); /* Líneas de cuaderno muy sutiles */
+				background-size: 100% 24px;
+				background-position: 0 4px;
+			}
+
+			.title {
+				margin: 0 0 1rem 0;
+				color: var(--text-main);
+				font-size: 1.5rem;
+				font-weight: 800;
+				line-height: 1.3;
+				font-family: 'Fredoka One', cursive, sans-serif;
+				/* Fondo para resaltar texto */
+				background: rgba(255,255,255,0.5); 
+				box-shadow: 0 0 10px 10px rgba(255,255,255,0.9);
+				border-radius: 4px;
+			}
+
+			ul li:hover .title {
+				color: var(--primary-color);
+			}
+
+			.date {
+				margin: 0;
+				color: var(--text-muted);
+				font-size: 0.85rem;
+				font-weight: 700;
+				font-family: 'Courier New', Courier, monospace; /* Fuente tipo máquina de escribir */
+				background: #fff;
+				padding: 0.2em 0.6em;
+				border: 1px dashed #cbd5e0;
+				border-radius: 4px;
+				align-self: flex-start;
+				transform: rotate(-2deg); /* Un toque "pegado a mano" */
+			}
+
+			ul li:hover .date {
+				border-color: var(--primary-color);
+				color: var(--primary-color);
+				transform: rotate(0deg);
+			}
+
+			@media (max-width: 720px) {
+				ul {
+					gap: 3rem;
+					grid-template-columns: 1fr;
+				}
+				main {
+					padding: 3em 1em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									<div class="image-container">
+										{post.data.heroImage && (
+											<img width={720} height={360} src={post.data.heroImage} alt="" />
+										)}
+									</div>
+									<div class="content">
+										<h4 class="title">{post.data.title}</h4>
+										<p class="date">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

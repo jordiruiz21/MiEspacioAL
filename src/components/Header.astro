@@ -1,0 +1,84 @@
+---
+---
+
+<header>
+	<nav>
+		<h2><a href="/">Mi espacio de Audición y Lenguaje</a></h2>
+	</nav>
+</header>
+<style>
+	header {
+		margin: 0;
+		padding: 2em 1em;
+		/* Fondo color papel suave */
+		background-color: #fdfbf7; 
+		/* Patrón de puntos tipo libreta escolar */
+		background-image: radial-gradient(#cbd5e0 1px, transparent 1px);
+		background-size: 20px 20px;
+		
+		/* Borde superior colorido */
+		border-top: 8px solid #ff6b6b;
+		/* Borde inferior sutil para delimitar el header */
+		border-bottom: 1px solid #e2e8f0;
+		
+		/* Cambiado de 'sticky' a 'relative' para que desaparezca al hacer scroll */
+		position: relative; 
+		z-index: 100;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+	}
+
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: center; /* Centrado horizontal absoluto */
+		width: 100%; /* Asegura que ocupa todo el ancho */
+		margin: 0 auto;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 2em;
+		line-height: 1.2;
+		text-align: center; /* Asegura el centrado del texto si hace salto de línea */
+	}
+
+	h2 a {
+		text-decoration: none;
+		color: #2d3748;
+		font-family: 'Fredoka One', 'Varela Round', 'Comic Sans MS', sans-serif;
+		font-weight: 800;
+		letter-spacing: -0.5px;
+		
+		/* Estilo "Etiqueta" o "Pegatina" */
+		background: #ffffff;
+		padding: 0.5em 1.2em;
+		border: 2px solid #2d3748; /* Borde estilo dibujo */
+		border-radius: 12px;
+		box-shadow: 4px 4px 0px rgba(45, 55, 72, 0.1); /* Sombra sólida */
+		
+		display: inline-block;
+		transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efecto rebote */
+	}
+	
+	/* Efecto al pasar el ratón: ¡La etiqueta se levanta! */
+	h2 a:hover {
+		color: #ff6b6b;
+		border-color: #ff6b6b;
+		background-color: #fff;
+		transform: translateY(-4px) rotate(-1deg) scale(1.02);
+		box-shadow: 6px 8px 0px rgba(255, 107, 107, 0.2);
+	}
+
+	@media (max-width: 720px) {
+		header {
+			padding: 1.5em 1em;
+		}
+		h2 {
+			font-size: 1.3em;
+		}
+		h2 a {
+			padding: 0.4em 0.8em;
+			box-shadow: 3px 3px 0px rgba(45, 55, 72, 0.1);
+		}
+	}
+</style>

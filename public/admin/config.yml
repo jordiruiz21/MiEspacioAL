@@ -1,0 +1,33 @@
+#local_backend: true
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "blog"
+    label: "Materiales"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha", name: "pubDate", widget: "datetime"}
+      - {label: "Descripción", name: "description", widget: "text"}
+      - {label: "Imagen Destacada", name: "heroImage", widget: "image", required: false}
+      
+      # --- AQUÍ EMPIEZA EL CAMBIO ---
+      # Hemos quitado 'material_file' y puesto 'attachments' como lista
+      - label: "Archivos Adjuntos"
+        name: "attachments"
+        widget: "list" 
+        required: false
+        fields:
+          - {label: "Nombre del documento", name: "name", widget: "string"}
+          - {label: "Descripción corta", name: "description", widget: "string", required: false}
+          - {label: "Archivo", name: "file", widget: "file"}
+      # --- AQUÍ TERMINA EL CAMBIO ---
+
+      - {label: "Cuerpo del Texto", name: "body", widget: "markdown"}

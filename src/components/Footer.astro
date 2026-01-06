@@ -1,0 +1,110 @@
+---
+const today = new Date();
+---
+
+<footer>
+	<div class="footer-content">
+		<!-- Sección de Contacto -->
+		<div class="contact-section">
+			<svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+				<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+			</svg>
+			<a href="mailto:paulappq2@gmail.com" class="email-link">paulappq2@gmail.com</a>
+		</div>
+
+		<!-- Sección de Copyright y Créditos -->
+		<div class="meta-info">
+			<p>&copy; {today.getFullYear()} Mi espacio de Audición y Lenguaje. Todos los derechos reservados.</p>
+			<p class="credits">
+				Created by: <a href="https://jordiruiz21.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">Jordi Ruiz</a>
+			</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	footer {
+		/* Fondo blanco limpio para cerrar la página */
+		background: #ffffff;
+		padding: 3em 1em;
+		text-align: center;
+		color: #718096;
+		
+		/* Borde superior azul para complementar el rojo del header */
+		border-top: 5px solid #ff6b6b; 
+		box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
+		margin-top: auto;
+	}
+
+	.footer-content {
+		max-width: 960px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	/* Estilo del Email */
+	.contact-section {
+		background: #fdf6f6ff;
+		padding: 0.8em 1.5em;
+		border-radius: 50px;
+		border: 1px solid #f0e2e3ff;
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		transition: all 0.3s ease;
+	}
+
+	.contact-section:hover {
+		border-color: #ff6b6b;
+		background: #ffbabaff;
+		transform: translateY(-2px);
+	}
+
+	.icon {
+		width: 20px;
+		height: 20px;
+		color: #ff6b6b; 
+	}
+
+	.email-link {
+		text-decoration: none;
+		color: #2d3748;
+		font-weight: 700;
+		font-family: 'Fredoka One', 'Varela Round', 'Comic Sans MS', sans-serif;
+	}
+
+	/* Estilo de los Créditos */
+	.meta-info {
+		font-size: 0.9em;
+		line-height: 1.6;
+	}
+
+	.meta-info p {
+		margin: 0;
+	}
+
+	.credits {
+		margin-top: 0.5em !important;
+		font-size: 0.85em;
+		color: #a0aec0;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		font-weight: 600;
+	}
+
+	.credits a {
+		color: #ff6b6b;
+		text-decoration: none;
+		border-bottom: 2px solid transparent;
+		transition: all 0.2s;
+	}
+
+	.credits a:hover {
+		color: #ff6b6b; /* Efecto hover con el color primario del sitio */
+		border-bottom-color: #ff6b6b;
+	}
+</style>
