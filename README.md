@@ -1,62 +1,105 @@
-# Astro Starter Kit: Blog
+<div align="center">
 
-```sh
-npm create astro@latest -- --template blog
-```
+  <h1>📚 Aula Virtual / Blog de Materiales</h1>
+  
+  <p>
+    Una plataforma educativa rápida, estética y fácil de gestionar.
+    <br />
+    Construida con <strong>Astro</strong> y gestionada con <strong>Decap CMS</strong>.
+  </p>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+  <img src="https://via.placeholder.com/800x400?text=Captura+de+la+Web" alt="Vista previa del proyecto" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 
-Features:
+  <br />
+  <br />
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+  ![Astro](https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white)
+  ![Decap CMS](https://img.shields.io/badge/Decap%20CMS-3A2F3D?style=for-the-badge&logo=netlify&logoColor=white)
+  ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+  ![Status](https://img.shields.io/badge/Status-Terminado-success?style=for-the-badge)
 
-## 🚀 Project Structure
+</div>
 
-Inside of your Astro project, you'll see the following folders and files:
+<hr />
+
+## 🧐 ¿Qué es este proyecto?
+
+Este proyecto es un sitio web diseñado para que un profesor pueda subir **material didáctico (PDFs, imágenes)** y compartir noticias con sus alumnos sin necesidad de saber programar. 
+
+La web simula un **cuaderno escolar** con detalles visuales como cintas adhesivas ("Washi Tape"), tipografías amables y animaciones suaves.
+
+## ✨ Características Principales
+
+- **⚡ Rendimiento Extremo:** Carga instantánea gracias a Astro (HTML estático).
+- **📝 Gestión Fácil (CMS):** Panel de administración visual (Decap CMS) para crear posts y subir archivos arrastrando y soltando.
+- **🔐 Acceso Seguro:** Panel de administración protegido con Netlify Identity.
+- **📂 Sistema de Archivos:**
+  - Soporte para múltiples adjuntos por entrada.
+  - **Botón "Descargar Todo":** Script inteligente que descarga todos los materiales de una lección secuencialmente.
+- **🎨 Diseño Único:**
+  - Efecto "Washi Tape" CSS puro.
+  - Animaciones de entrada (Fade In).
+  - Diseño Responsive (Móvil/Tablet/PC).
+
+## 🛠️ Tecnologías Utilizadas
+
+* **Frontend:** [Astro](https://astro.build/) (v5)
+* **CMS:** [Decap CMS](https://decapcms.org/) (anteriormente Netlify CMS)
+* **Estilos:** CSS3 Moderno (Variables, Grid, Flexbox, Animations)
+* **Despliegue:** [Netlify](https://netlify.com/)
+* **Autenticación:** Netlify Identity
+
+## 🚀 Instalación y Uso Local
+
+Si quieres clonar este proyecto y probarlo en tu ordenador:
+
+1.  **Clona el repositorio:**
+    ```bash
+    git clone [https://github.com/TU_USUARIO/NOMBRE_DEL_REPO.git](https://github.com/TU_USUARIO/NOMBRE_DEL_REPO.git)
+    cd NOMBRE_DEL_REPO
+    ```
+
+2.  **Instala las dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configura el CMS en modo local:**
+    Abre `public/admin/config.yml` y descomenta la línea:
+    ```yaml
+    local_backend: true
+    ```
+
+4.  **Inicia el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+    Y en otra terminal, inicia el proxy del CMS:
+    ```bash
+    npx decap-server
+    ```
+
+5.  ¡Listo! Abre `http://localhost:4321` para ver la web y `http://localhost:4321/admin` para el panel.
+
+## 📦 Despliegue en Producción
+
+Este proyecto está preconfigurado para **Netlify**.
+
+1.  Sube el código a GitHub.
+2.  Importa el proyecto en Netlify.
+3.  Activa **Identity** y **Git Gateway** en la configuración del sitio.
+4.  **Importante:** Asegúrate de que en `config.yml` la línea `local_backend: true` esté **comentada** o borrada.
+
+## 📂 Estructura del Proyecto
 
 ```text
+/
 ├── public/
+│   ├── admin/       # Configuración del CMS (config.yml)
+│   └── uploads/     # Aquí se guardan las fotos y PDFs subidos
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+│   ├── components/  # Header, Footer, BaseHead
+│   ├── content/     # Esquemas de datos (config.ts) y Posts (.md)
+│   ├── layouts/     # Plantilla del Blog (BlogPost.astro)
+│   └── pages/       # Página principal (index.astro)
+└── astro.config.mjs
