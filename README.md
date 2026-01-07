@@ -55,7 +55,7 @@ Si quieres clonar este proyecto y probarlo en tu ordenador:
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone [https://github.com/TU_USUARIO/NOMBRE_DEL_REPO.git](https://github.com/TU_USUARIO/NOMBRE_DEL_REPO.git)
+    git clone [https://github.com/jordiruiz21/MiEspacioAL.git](https://github.com/jordiruiz21/MiEspacioAL.git)
     cd NOMBRE_DEL_REPO
     ```
 
