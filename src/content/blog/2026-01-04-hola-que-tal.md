@@ -1,10 +1,10 @@
 ---
 title: "Conciencia fonológica "
-pubDate: 2026-01-04T16:37:00.000+01:00
+pubDate: 2026-01-11T19:43:00.000+01:00
 description: Se trata de la habilidad de reconocer e identificar los sonidos del
   habla, asociándolos con los fonemas correspondientes, competencia esencial
   para el desarrollo lectoescritor del alumnado.
-heroImage: /uploads/conciendcia.jpg
+heroImage: /uploads/conciencia-fonológica.jpg
 attachments:
   - file: /uploads/cv_jordiruiz.pdf
     name: archivo1
@@ -20,4 +20,4 @@ attachments:
   - name: fdadf
     file: /uploads/diseño-sin-título.png
 ---
-un poquito de cuerpo de texto
+A continuación, se exponen y explican diferentes actividades y juegos para el desarrollo de la conciencia fonológica, o lo que es lo mismo asociar el sonido a la letra.
