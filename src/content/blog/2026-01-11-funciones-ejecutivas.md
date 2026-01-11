@@ -6,4 +6,4 @@ description: "Las funciones ejecutivas son un conjunto de habilidades entre las
   planificación, atención y organización."
 heroImage: /uploads/funciones-ejecutivas.png
 ---
-Estas capacidades son clave para la toma de decisiones y la adaptación ante cambios y situaciones que se puedan producir. Por eso, es necesario trabajara estas habilidades con los más pequeños y pequeñas.
+Estas capacidades son clave para la toma de decisiones y la adaptación ante cambios y situaciones que se puedan producir. Por eso, es necesario trabajar estas habilidades con los más pequeños y pequeñas.
