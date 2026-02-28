@@ -3,8 +3,12 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dvukzj4be
+    api_key: 344992958355367
+publish_mode: editorial_workflow
 
 collections:
   - name: "blog"
